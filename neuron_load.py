@@ -1,7 +1,9 @@
 import numpy as np
 import array
+from neuron_plot import *
 
-def load(filename):
+def load_vh(n):
+  filename = 'data/imk%05d.iml'%n
   with open(filename,'rb') as h:
     s = h.read()
   arr = array.array('H',s)
@@ -11,11 +13,7 @@ def load(filename):
   return img
 
 if __name__=="__main__":
-  import disp
-  IMG_XMAX = 1024
-  IMG_YMAX = 1532
-  screen = disp.Screen(IMG_XMAX,IMG_YMAX)
-  img = load('data/imk00101.iml')
-  screen.img_vh(left=0,top=0,img=img)
-  screen.wait_quit()
+  i = 1
+  img = load_vh(i)
+  plot_vh(img)
 
