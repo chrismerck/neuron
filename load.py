@@ -7,14 +7,15 @@ def load(filename):
   arr = array.array('H',s)
   arr.byteswap()
   img = np.array(arr,dtype='uint16').reshape(1024,1536)
+  img = img[:,2:-2]
   return img
-
 
 if __name__=="__main__":
   import disp
   IMG_XMAX = 1024
-  IMG_YMAX = 1536
+  IMG_YMAX = 1532
   screen = disp.Screen(IMG_XMAX,IMG_YMAX)
-  img = load('data/imk00001.iml')
+  img = load('data/imk00101.iml')
   screen.img_vh(left=0,top=0,img=img)
+  screen.wait_quit()
 

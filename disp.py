@@ -1,9 +1,10 @@
 import sys, ctypes
+import numpy as np
 from sdl2 import *
 import sdl2.ext
 
 def main():
-  screen = Screen(1000,1000)
+  screen = Screen(1025,1536)
   screen.wait_quit()
   screen.quit()
 
@@ -41,14 +42,26 @@ class Screen(object):
   def img_vh(self,left,top,img):
     p = self.get_pix()
     (img_xmax,img_ymax)=img.shape
+    img_xmax = 1000
+    img_ymax = 1000
     for i in range(img_xmax):
       for j in range(img_ymax):
-        w = min(max(img[i][j]*256/4096,255),0)
+        w = max(min(img[i][j]*256/4096,255),0)
         x = j+top
         y = i+left
         if x < self.xmax and y < self.ymax:
           p[j+top][i+left] = w + w*256 + w*256*256
     self.redraw()
+
+  '''
+  def img_vh(self,left,top,img):
+    p = self.get_pix()
+    (img_xmax,img_ymax)=img.shape
+    w = img*256/4096
+    c = w + w*256 + w*256*256
+    np.copyto(p,c)
+    self.redraw()
+  '''
 
 #sdl2.ext.pixels2d
 
