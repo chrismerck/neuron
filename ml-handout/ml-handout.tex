@@ -1,0 +1,105 @@
+% LaTeX Article Template - using defaults
+\documentclass[12pt]{article}
+%\documentclass[11pt]{article}
+%\usepackage{amsmath}
+%\usepackage{amssymb}
+%\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[parfill]{parskip}
+%\usepackage{mathrsfs}
+\usepackage{graphicx,mathbbol}
+%\usepackage[all]{xy}
+\usepackage{verbatim}
+\usepackage{moreverb}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+% Set left margin - The default is 1 inch, so the following 
+% command sets a 1.25-inch left margin.
+\setlength{\oddsidemargin}{-0.125in}
+% Set width of the text - What is left will be the right margin.
+% In this case, right margin is 8.5in - 1.25in - 6in = 1.25in.
+\setlength{\textwidth}{6.75in}
+% Set top margin - The default is 1 inch, so the following 
+% command sets a 0.75-inch top margin.
+\setlength{\topmargin}{-0.5in}
+% Set height of the text - What is left will be the bottom margin.
+% In this case, bottom margin is 11in - 0.75in - 9.5in = 0.75in
+\setlength{\textheight}{8.5in}
+
+\begin{document}
+
+\title{\sc \large Unsupervised Machine Learning and Neural Networks\vspace{-2ex}}
+%\author{\sc \small  Chris Merck \vspace{-2ex}}
+%\date{\sc \small \today}
+%\maketitle
+
+\theoremstyle{definition}
+\newtheorem{axiom}{Axiom}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+
+\newcommand{\scare}[1]{`#1'} 
+
+% disables chapter, section and subsection numbering
+\setcounter{secnumdepth}{-1} 
+
+\pagenumbering{gobble}
+
+\textbf{Goal:} A brief overview unsupervised learning and multi-layer perceptrons (MLPs).
+
+\textbf{MLP:} Perceptron, weights, non-linear activation function, feed-forward topology.
+
+Let $X$ be the stimuli space and $Y$ be the (discrete) set of class labels.
+
+\textbf{Supervised Learning Problem:} To classify\footnote{ This discussion is in terms of classification, but the concepts can be easily extended to regression, reenforcement learning, and other frameworks.} stimuli based on example stimulus-class pairs.
+\begin{itemize}
+\item \textbf{Input:} \textit{labeled training examples} $\{(x_1,y_1),...,(x_n,y_n)\}$ drawn from $P(x,y)$,
+  and unlabeled stimuli $\{x_{n+1},...\}$ to be classified.
+\item \textbf{Output:} Best-guesses for class labels $\{y_{n+1},...\}$, 
+  or more generally estimates of the probabilities $P(y|x_{n+1})$, etc.
+\item \textbf{Evaluation:} Mean-square error of predicted to actual class labels, or expected perplexity.
+\item \textbf{Example:} A child learning sees images $x_i$ and is told by their parent the name $y_i$ of that type of object.
+\item \textbf{Implementation:} An MLP with any number of layers, $x$ presented to first layer, weights trained via back-propagation of error between output layer and $y$.
+\end{itemize}
+
+\textbf{Unsupervised Learning Problem:} To learn class structure from stimuli.
+\begin{itemize}
+\item \textbf{Input:} \textit{unlabeled examples} $\{x_1,...,x_n\}$ drawn from marginal $P(x)$.
+\item \textbf{Output:} Inferred class structure $Y$ and
+  or more estimates of the probabilities $P(y|x_{i})$.
+\item \textbf{Evaluation:} Mutual information between learned class structure and actual structure.
+\item \textbf{Example:} A feral child sees images $x_i$ but has no parent to tell them the names of things.
+\item \textbf{Implementation:} An MLP with each layer trained to satisfy suitable intrinsic statistical criteria (such as fidelity and sparsity). Methods include sparse autoencoders, restricted Boltzmann machines, and perhaps a multi-neuron version of Chklovskii's rule.
+\end{itemize}
+
+
+\textbf{Semisupervised Learning Problem:} To classify stimuli given many unlabeled examples and limited labeled examples.
+\begin{itemize}
+\item \textbf{Input:} That of both supervised and unsupervised cases.
+\item \textbf{Output:} Same as supervised case.
+\item \textbf{Evaluation:} Same as supervised case.
+\item \textbf{Example:} A child who sees many images only some of which are named for them.
+\item \textbf{Implementation:} The MLP of unsupervised case plus a final supervised stage.
+\end{itemize}
+
+
+
+
+
+%\begin{thebibliography}{999}
+
+%\bibitem{ast}
+%  Tanenbaum, Andrew S., \textit{Modern Operating Systems}, Third Edition, Pearson (2008)
+
+%%\bibitem{sgg}
+%Silberschatz, Gavin, and Gagne, \textit{Operating System Concepts}, Sixth Edition, ?, (?)
+
+%\bibitem{numpy}
+%Eric Jones, Travis Oliphant, Pearu Peterson, et. al., \textit{SciPy: Open source scientific tools for Python}, (2001)
+%\verb|http://www.scipy.org/|
+
+%\vspace{5cm}
+
+%\end{thebibliography}
+
+\end{document}
