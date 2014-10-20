@@ -45,40 +45,40 @@
 
 \pagenumbering{gobble}
 
-\textbf{Goal:} A brief overview unsupervised learning and multi-layer perceptrons (MLPs).
+\textbf{Goal:} Overview of definition of learning from Machine Learning.
 
-\textbf{MLP:} Perceptron, weights, non-linear activation function, feed-forward topology.
+\textbf{MLPs:} perceptron, weights, non-linear activation function, feed-forward topology.
 
 Let $X$ be the stimuli space and $Y$ be the (discrete) set of class labels.
 
 \textbf{Supervised Learning Problem:} To classify\footnote{ This discussion is in terms of classification, but the concepts can be easily extended to regression, reenforcement learning, and other frameworks.} stimuli based on example stimulus-class pairs.
 \begin{itemize}
 \item \textbf{Input:} \textit{labeled training examples} $\{(x_1,y_1),...,(x_n,y_n)\}$ drawn from $P(x,y)$,
-  and unlabeled stimuli $\{x_{n+1},...\}$ to be classified.
+  and unlabeled stimuli $\{x_{n+1},...\}$ to be classified one at a time.
 \item \textbf{Output:} Best-guesses for class labels $\{y_{n+1},...\}$, 
-  or more generally estimates of the probabilities $P(y|x_{n+1})$, etc.
+  or more generally estimates of the class probabilities $P(y|x_{n+1})$, etc.
 \item \textbf{Evaluation:} Mean-square error of predicted to actual class labels, or expected perplexity.
-\item \textbf{Example:} A child learning sees images $x_i$ and is told by their parent the name $y_i$ of that type of object.
+\item \textbf{Example:} A child sees images $x_i$ and is told by their parent the name $y_i$ of that type of object. He is later able to identify the same classes of objects in new images.
 \item \textbf{Implementation:} An MLP with any number of layers, $x$ presented to first layer, weights trained via back-propagation of error between output layer and $y$.
 \end{itemize}
 
 \textbf{Unsupervised Learning Problem:} To learn class structure from stimuli.
 \begin{itemize}
 \item \textbf{Input:} \textit{unlabeled examples} $\{x_1,...,x_n\}$ drawn from marginal $P(x)$.
-\item \textbf{Output:} Inferred class structure $Y$ and
-  or more estimates of the probabilities $P(y|x_{i})$.
-\item \textbf{Evaluation:} Mutual information between learned class structure and actual structure.
+\item \textbf{Output:} Inferred class structure $Y$ 
+  and estimates of the probabilities $P(y|x_{i})$.
+\item \textbf{Evaluation:} Similarity (e.g. mutual information) between learned class structure and actual structure.
 \item \textbf{Example:} A feral child sees images $x_i$ but has no parent to tell them the names of things.
 \item \textbf{Implementation:} An MLP with each layer trained to satisfy suitable intrinsic statistical criteria (such as fidelity and sparsity). Methods include sparse autoencoders, restricted Boltzmann machines, and perhaps a multi-neuron version of Chklovskii's rule.
 \end{itemize}
 
 
-\textbf{Semisupervised Learning Problem:} To classify stimuli given many unlabeled examples and limited labeled examples.
+\textbf{Semisupervised Learning Problem:} To classify stimuli given many unlabeled examples and a limited number of labeled examples.
 \begin{itemize}
 \item \textbf{Input:} That of both supervised and unsupervised cases.
 \item \textbf{Output:} Same as supervised case.
 \item \textbf{Evaluation:} Same as supervised case.
-\item \textbf{Example:} A child who sees many images only some of which are named for them.
+\item \textbf{Example:} A child who sees many images only some of which are named for them. (The most realistic case.)
 \item \textbf{Implementation:} The MLP of unsupervised case plus a final supervised stage.
 \end{itemize}
 

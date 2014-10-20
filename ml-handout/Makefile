@@ -3,7 +3,7 @@
 base=ml-handout
 
 all: $(base).pdf
-	open $(base).pdf
+	evince $(base).pdf
 	#open $(fig_pngs)
 
 #%.png: %.gv
